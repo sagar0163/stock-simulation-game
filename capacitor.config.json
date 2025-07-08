@@ -1,0 +1,5 @@
+{
+  "appId": "unreal.sim.stock_simulator.io",
+  "appName": "Stock-Stimulator",
+  "webDir": "dist/stock-sim-frontend"
+}
