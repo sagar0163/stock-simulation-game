@@ -1,7 +1,19 @@
 {
+  "name": "stock-simulation-game",
+  "version": "2.0.0",
+  "description": "Virtual stock trading game with real-time market simulation",
+  "main": "index.js",
+  "scripts": {
+    "build": "npx cap sync",
+    "android": "npx cap run android",
+    "ios": "npx cap run ios"
+  },
   "dependencies": {
-    "@capacitor/android": "^7.4.1",
-    "@capacitor/cli": "^7.4.1",
-    "@capacitor/core": "^7.4.1"
-  }
+    "@capacitor/android": "^7.0.0",
+    "@capacitor/cli": "^7.0.0",
+    "@capacitor/core": "^7.0.0"
+  },
+  "keywords": ["stock", "trading", "game", "simulation", "finance"],
+  "author": "Sagar",
+  "license": "MIT"
 }
