@@ -22,6 +22,9 @@ jobs:
       - name: Install dependencies
         run: npm install
       
+      - name: Create web assets directory
+        run: mkdir -p dist/stock-sim-frontend && echo '<!DOCTYPE html><html><body><h1>Stock Simulator</h1></body></html>' > dist/stock-sim-frontend/index.html
+      
       - name: Sync Capacitor
         run: npx cap sync android
       
