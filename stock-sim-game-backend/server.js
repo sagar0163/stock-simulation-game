@@ -1,7 +1,6 @@
 // Main server file for Stock Simulation Game Backend
 const express = require('express');
 const cors = require('cors');
-const bodyParser = require('body-parser');
 const path = require('path');
 require('dotenv').config();
 
@@ -11,26 +10,30 @@ const routes = require('./api/routes');
 const db = require('./api/config/db');
 
 const app = express();
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 3000; // Use PORT from .env or default to 3000
 
-// Connect to database
-db.connect()
-  .then(() => console.log('Database connected'))
-  .catch((err) => console.error('Database connection error:', err));
+// Connect to database (optional - server works without DB)
+if (process.env.DB_URI && process.env.DB_URI !== 'mongodb://localhost:27017/yourdbname') {
+  db.connect()
+    .then(() => console.log('Database connected'))
+    .catch((err) => console.error('Database connection error:', err));
+} else {
+  console.log('Running without database (DB_URI not configured)');
+}
 
 // Middleware
 app.use(cors());
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.json()); // Use express.json() instead of bodyParser.json()
+app.use(express.urlencoded({ extended: true })); // Use express.urlencoded() instead of bodyParser.urlencoded()
 app.use(sessionMiddleware);
-
-// API routes
-app.use('/', routes);
 
 // Root endpoint
 app.get('/', (req, res) => {
   res.send('Stock Simulation Game Backend is running');
 });
+
+// API routes - placed after root endpoint to ensure it doesn't override "/"
+app.use('/', routes);
 
 // Start server
 app.listen(PORT, () => {

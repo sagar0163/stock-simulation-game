@@ -1,7 +1,7 @@
 // loginService.js
 const users = [
-  { username: 'admin', password: 'admin123' },
-  { username: 'user', password: 'user123' }
+  { username: 'testuser', password: 'testpass' },
+  { username: 'demouser', password: 'demopass' }
 ];
 
 function authenticate(username, password) {
